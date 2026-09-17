@@ -4,135 +4,528 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+
+    <title>Nandhini | Portfolio</title>
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #ffffff;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero */
+        .hero {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #f0f2f5;
-        }
-
-        .login-box {
-            width: 350px;
-            background: white;
-            padding: 35px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        h2 {
             text-align: center;
-            margin-bottom: 25px;
-            color: #333;
+            padding: 100px 20px 50px;
+            background: linear-gradient(135deg, #eff6ff, #ffffff);
         }
 
-        label {
-            display: block;
-            margin-bottom: 7px;
-            color: #333;
-            font-weight: bold;
+        .hero-content {
+            max-width: 800px;
         }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 18px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+            color: #0f172a;
         }
 
-        input:focus {
-            outline: none;
-            border-color: #007bff;
+        .hero h1 span {
+            color: #2563eb;
         }
 
-        .forgot {
-            text-align: right;
-            margin-top: -8px;
+        .hero h2 {
+            font-size: 28px;
+            color: #475569;
             margin-bottom: 20px;
         }
 
-        .forgot a {
-            color: #007bff;
-            text-decoration: none;
-            font-size: 14px;
+        .hero p {
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 30px;
         }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #007bff;
+        .btn {
+            display: inline-block;
+            padding: 13px 28px;
+            background: #2563eb;
             color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #0056b3;
-        }
-
-        .signup {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        .signup a {
-            color: #007bff;
             text-decoration: none;
+            border-radius: 8px;
+            margin: 5px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+
+        .btn-outline:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* Common Section */
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 45px;
+            color: #0f172a;
+        }
+
+        /* About */
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            font-size: 17px;
+            color: #64748b;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill h3 {
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .skill p {
+            color: #64748b;
+        }
+
+        /* Projects */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .project h3 {
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .project p {
+            color: #64748b;
+        }
+
+        /* Education */
+        .education {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .education-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2563eb;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .education-card h3 {
+            color: #0f172a;
+        }
+
+        .education-card p {
+            color: #64748b;
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+            background: #0f172a;
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact p {
+            color: #cbd5e1;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #020617;
+            color: #94a3b8;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Mobile */
+        @media (max-width: 700px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="login-box">
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Nandhini.</div>
 
-        <h2>Login</h2>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-        <form>
-            <label for="email">Email</label>
-            <input 
-                type="email" 
-                id="email" 
-                placeholder="Enter your email"
-                required
-            >
 
-            <label for="password">Password</label>
-            <input 
-                type="password" 
-                id="password" 
-                placeholder="Enter your password"
-                required
-            >
+    <!-- Home -->
+    <section class="hero" id="home">
 
-            <div class="forgot">
-                <a href="#">Forgot Password?</a>
-            </div>
+        <div class="hero-content">
 
-            <button type="submit">Login</button>
-        </form>
+            <h1>Hello, I'm <span>Nandhini</span></h1>
 
-        <div class="signup">
-            Don't have an account?
-            <a href="#">Sign Up</a>
+            <h2>Computer Science Engineering Student</h2>
+
+            <p>
+                A passionate technology enthusiast focused on problem solving,
+                software development, cybersecurity, and building practical
+                solutions through continuous learning.
+            </p>
+
+            <a href="#projects" class="btn">View My Work</a>
+            <a href="#contact" class="btn btn-outline">Contact Me</a>
+
         </div>
 
-    </div>
+    </section>
+
+
+    <!-- About -->
+    <section id="about">
+
+        <h2 class="section-title">About Me</h2>
+
+        <div class="about">
+
+            <p>
+                I am a Computer Science Engineering student with a strong
+                interest in technology, programming, and problem solving.
+                I enjoy learning new concepts, developing applications,
+                working with databases, and exploring cybersecurity.
+            </p>
+
+            <br>
+
+            <p>
+                My goal is to continuously improve my technical skills and
+                transform ideas into useful and reliable digital solutions.
+                I believe that consistent learning, practical experience,
+                and curiosity are essential for growing as a technology
+                professional.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Skills -->
+    <section id="skills">
+
+        <h2 class="section-title">Skills</h2>
+
+        <div class="skills-container">
+
+            <div class="skill">
+                <h3>Programming</h3>
+                <p>C++ • Java • Python</p>
+            </div>
+
+            <div class="skill">
+                <h3>Web Development</h3>
+                <p>HTML • CSS • JavaScript</p>
+            </div>
+
+            <div class="skill">
+                <h3>Database</h3>
+                <p>MySQL • DBMS • SQL</p>
+            </div>
+
+            <div class="skill">
+                <h3>Cybersecurity</h3>
+                <p>Network Security • VAPT • OWASP</p>
+            </div>
+
+            <div class="skill">
+                <h3>Problem Solving</h3>
+                <p>Data Structures • Algorithms</p>
+            </div>
+
+            <div class="skill">
+                <h3>Tools</h3>
+                <p>Git • GitHub • Linux</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Projects -->
+    <section id="projects">
+
+        <h2 class="section-title">Projects</h2>
+
+        <div class="projects-container">
+
+            <div class="project">
+                <h3>TRIVAPT</h3>
+
+                <p>
+                    An automated Vulnerability Assessment and Penetration
+                    Testing framework designed to streamline security
+                    assessment workflows and generate structured security
+                    reports.
+                </p>
+            </div>
+
+
+            <div class="project">
+                <h3>Disaster Response Management System</h3>
+
+                <p>
+                    A database management project designed to organize
+                    disaster-related information and support efficient
+                    management of incidents, resources, and response
+                    activities.
+                </p>
+            </div>
+
+
+            <div class="project">
+                <h3>Meeting Scheduler</h3>
+
+                <p>
+                    A Java-based application designed to manage meetings,
+                    schedules, participants, and time-related activities
+                    through a simple and structured workflow.
+                </p>
+            </div>
+
+
+            <div class="project">
+                <h3>Warehouse Management System</h3>
+
+                <p>
+                    A Java application that models warehouse operations
+                    including picking, packing, and shipping processes
+                    using object-oriented programming concepts.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Education -->
+    <section id="education">
+
+        <h2 class="section-title">Education</h2>
+
+        <div class="education">
+
+            <div class="education-card">
+
+                <h3>B.E. Computer Science and Engineering</h3>
+
+                <p>
+                    Karpagam College of Engineering
+                </p>
+
+                <p>
+                    Specialization: Cyber Security
+                </p>
+
+                <p>
+                    2024 – 2028
+                </p>
+
+            </div>
+
+
+            <div class="education-card">
+
+                <h3>Higher Secondary Education</h3>
+
+                <p>
+                    Sakthi Matric Higher Secondary School
+                </p>
+
+                <p>
+                    Higher Secondary Certificate (HSC)
+                </p>
+
+            </div>
+
+
+            <div class="education-card">
+
+                <h3>Secondary Education</h3>
+
+                <p>
+                    Sakthi Matric Higher Secondary School
+                </p>
+
+                <p>
+                    Secondary School Leaving Certificate (SSLC)
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+
+        <h2 class="section-title">Let's Connect</h2>
+
+        <p>
+            I'm always interested in learning, collaborating, and working
+            on meaningful technology projects.
+        </p>
+
+        <p>
+            Email: nandhini@example.com
+        </p>
+
+        <br>
+
+        <a href="mailto:nandhini@example.com" class="btn">
+            Send Me an Email
+        </a>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Nandhini. All Rights Reserved.
+        </p>
+
+    </footer>
 
 </body>
 </html>
